@@ -11,7 +11,8 @@ void header(void)
 {
     char* program = "Shredder";
     double version = 1.23;
-    fprintf(stderr, "%s utility v. %.2f\nAuthor: shemhazai [andre.marques@fatec.sp.gov.br]\n"
+    fprintf(stderr, "%s utility v. %.2f\n"
+            "Author: shemhazai [andre.marques@fatec.sp.gov.br]\n"
             "Author: lnsan0 [lcsnascimentodossantos@gmail.com]\n", program, version);
 }
 
