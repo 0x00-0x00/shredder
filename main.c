@@ -177,7 +177,7 @@ int shred(FILE* fp, long long size) {
     p = 100.0;
 
     actual_bytes = count_bytes(i);
-    sprintf(status, "[ %s / %s ] "GRN"%.2f%%"RESET" \n", actual_bytes, total_byte_size, p)
+    sprintf(status, "[ %s / %s ] "GRN"%.2f%%"RESET" \n", actual_bytes, total_byte_size, p);
     fprintf(stdout, status);
 
     /*Closes urand file descriptor */
