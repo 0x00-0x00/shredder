@@ -1,6 +1,6 @@
 CC=gcc
-CFLAGS=-std=gnu99 -Wall -lpthread -D_FILE_OFFSET_BITS=64
-PROC=shredder
+CFLAGS=-std=gnu99 -Wall
+PROG = shredder
 
 shredder: main.c
 	$(CC) -o $(PROG) main.c $(CFLAGS)
