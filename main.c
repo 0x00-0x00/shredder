@@ -7,23 +7,31 @@
 
 #define CHUNK_SIZE 1024
 
+/* Color defines */
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
+
+
+
+char* help = YEL "Shredder" RESET " - secure shredding tool\n"
+        "Available arguments: \n"
+        "   -u      -> Remove file from operational system after shredding\n";
+
+
 void header(void)
 {
     char* program = "Shredder";
     double version = 1.23;
-    fprintf(stderr, "%s utility v. %.2f\n"
+    fprintf(stderr, YEL "%s utility " RESET "v. %.2f\n"
             "Author: shemhazai [andre.marques@fatec.sp.gov.br]\n"
             "Author: lnsan0 [lcsnascimentodossantos@gmail.com]\n", program, version);
 }
-
-/*long long count_size(FILE* fp)
-{
-    long long size;
-    fseek(fp, 0L, SEEK_END); //go to the end of the file to get the amount of bytes
-    size = ftell(fp);
-    fseek(fp, 0, SEEK_SET); //go to the beggining again
-    return size;
-}*/
 
 char* count_bytes(off_t size)
 {
@@ -98,7 +106,6 @@ off_t count_size(const char* filename)
 
 void get_rnd_byte(char *ptr, FILE* fp)
 {
-    //memset(ptr, 0, CHUNK_SIZE);
     fread(ptr, 0x1, CHUNK_SIZE, fp);
 }
 
@@ -138,7 +145,7 @@ int shred(FILE* fp, long long size) {
     }
 
 
-    printf("Shredding status: \n");
+    printf("\nShredding status: \n");
 
     /* Inits algorithm for shredding files */
     fseek(fp, 0L, SEEK_SET);
@@ -150,7 +157,6 @@ int shred(FILE* fp, long long size) {
         if (i % (long long)one_percent == 0)
         {
             p = get_percentage(i, size);
-            //fprintf(stdout, "[ %lld / %lld ] %.2f%% \r", i, size, p);
             actual_bytes = count_bytes(i);
             sprintf(status, "[ %s / %s ] %.2f%% \r", actual_bytes, total_byte_size, p);
             fprintf(stdout, status);
@@ -170,9 +176,8 @@ int shred(FILE* fp, long long size) {
     }
     p = 100.0;
 
-    //fprintf(stdout, "[ %lld / %lld ] %.2f%% \r", i, size, p);
     actual_bytes = count_bytes(i);
-    sprintf(status, "[ %s / %s ] %.2f%% \n", actual_bytes, total_byte_size, p);
+    sprintf(status, "[ %s / %s ] "GRN"%.2f%%"RESET" \n", actual_bytes, total_byte_size, p)
     fprintf(stdout, status);
 
     /*Closes urand file descriptor */
