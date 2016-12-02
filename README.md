@@ -1,5 +1,5 @@
 # Shredder - Secure shredding tool ![version-badge](https://img.shields.io/badge/version-1.23-blue.svg) ![license-badge](https://img.shields.io/badge/license-MIT-green.svg)
-'Shredder' is a new utility to erase files safely of your Linux boxes.
+'Shredder' is a new utility to erase files safely with Linux boxes.
 -----
 
 ## Instructions
