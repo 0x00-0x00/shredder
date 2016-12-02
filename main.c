@@ -189,6 +189,9 @@ int main(int argc, char* argv[])
     // long long size
     off_t size;
     FILE *fp;
+    int erase_flag = 0, int_loop = 0;
+    char* file_name = malloc(sizeof(char) * 512);
+
 
     /* Prints program header in stderr */
     header();
@@ -198,6 +201,15 @@ int main(int argc, char* argv[])
     if(argc < 2) {
         fprintf(stderr, "%s: missing file operand\n", argv[0]);
         exit(-1);
+    }
+
+    /* Parse arguments */
+    for (int_loop = 0; int_loop < argc; int_loop++) {
+
+        // Check if --remove flag is present
+        if(!strcmp(argv[int_loop], "-u")) {
+            erase_flag = 1;
+        }
     }
 
     /* Open argument file */
@@ -224,5 +236,12 @@ int main(int argc, char* argv[])
     char *x;
     x = count_time((int)time_spent);
     fprintf(stderr, "Time elapsed: %s\n", x);
+
+    free(file_name);
+
+    if(erase_flag > 0) {
+        remove(file_name);
+    }
+
     return 0;
 }
