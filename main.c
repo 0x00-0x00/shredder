@@ -194,8 +194,9 @@ int main(int argc, char* argv[])
     // long long size
     off_t size;
     FILE *fp;
-    int erase_flag = 0, int_loop = 0;
-    char* file_name = malloc(sizeof(char) * 512);
+    int erase_flag = 0;
+    int int_loop = 0;
+    char* file_name;
 
 
     /* Prints program header in stderr */
@@ -208,17 +209,18 @@ int main(int argc, char* argv[])
         exit(-1);
     }
 
+    file_name = argv[1];
     /* Parse arguments */
     for (int_loop = 0; int_loop < argc; int_loop++) {
 
         // Check if --remove flag is present
         if(!strcmp(argv[int_loop], "-u")) {
-            erase_flag = 1;
+            erase_flag++;
         }
     }
 
     /* Open argument file */
-    fp = fopen(argv[1], "rb+");
+    fp = fopen(file_name, "rb+");
 
     /* Check file pointer and return error if NULL */
     if(fp == NULL) {
@@ -226,7 +228,7 @@ int main(int argc, char* argv[])
         exit(-1);
     }
 
-    size = count_size(argv[1]);
+    size = count_size(file_name);
     if(size < 0)
     {
         fprintf(stderr, "%s: error counting size of file\n", argv[0]);
@@ -242,9 +244,10 @@ int main(int argc, char* argv[])
     x = count_time((int)time_spent);
     fprintf(stderr, "Time elapsed: %s\n", x);
 
-    free(file_name);
+    
 
     if(erase_flag > 0) {
+	fprintf(stderr, "Removing file ...");
         remove(file_name);
     }
 
