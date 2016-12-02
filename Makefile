@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=-std=gnu99 -Wall -lpthread -D_FILE_OFFSET_BITS=64
+CFLAGS=-std=gnu99 -Wall -lpthread -D_FILE_OFFSET_BITS=64
 PROC=shredder
 
 shredder: main.c
