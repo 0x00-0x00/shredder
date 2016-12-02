@@ -12,14 +12,23 @@ To compile the program source code, type at terminal:
 make
 ```
 
-Then, install it typing:
+Then, with administrative, install it typing:
+```bash
+sudo make install
+```
+or as root:
 ```bash
 make install
 ```
 
 ### Usage
-To delete a file named 'secret_file.key' at your current directory, type at terminal:
+To shred a file named 'secret_file.key' at your current directory, type at terminal:
 ```bash
 shredder secret_file.key
+```
+
+To shred and delete 'secret_phrase.txt' at your current directory, type at terminal:
+```bash
+shedder secret_phrase.txt -u
 ```
 
