@@ -127,14 +127,17 @@ long double get_file_share_size(long long size)
 
 int shred(FILE* fp, long long size) {
     FILE *urand;
-    char byte[CHUNK_SIZE];
-    long long i = 0;
+
     size_t k = sizeof(char) * CHUNK_SIZE;
+
+    long long i = 0;
     long double one_percent = get_file_share_size(size);
     double p = 0;
+
     char* total_byte_size;
     char* actual_bytes;
     char status[256];
+    char byte[CHUNK_SIZE];
 
     /* Open urandom file */
     urand = fopen("/dev/urandom", "r");
@@ -147,12 +150,21 @@ int shred(FILE* fp, long long size) {
 
     printf("\nShredding status: \n");
 
-    /* Inits algorithm for shredding files */
+    /* Set file descriptor to point to the 0-index byte of file. */
     fseek(fp, 0L, SEEK_SET);
 
     total_byte_size = count_bytes(size);
     for(i = 0; i < size; i += k)
     {
+
+        /* Fix: 2016/12/04
+         * Files with size < 100 bytes make 'one_percent' to be 0 and raise Floating Pointer Exception
+         * at the next if conditional.
+         */
+        if((long long)one_percent == 0) {
+            one_percent = 1;
+        }
+
         /* Print status if modulus % 1.0% is true */
         if (i % (long long)one_percent == 0)
         {
