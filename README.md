@@ -5,6 +5,11 @@
 ## Instructions
 To use this program, you need to compile it and install it. There are no other requirements other than Linux kernel, make and C compiler.
 
+### Download
+```bash
+git clone https://github.com/0x00-0x00/shredder.git
+```
+
 ### Compiling and installing
 
 To compile the program source code, type at terminal:
@@ -29,6 +34,6 @@ shredder secret_file.key
 
 To shred and delete 'secret_phrase.txt' at your current directory, type at terminal:
 ```bash
-shedder secret_phrase.txt -u
+shredder secret_phrase.txt -u
 ```
 
