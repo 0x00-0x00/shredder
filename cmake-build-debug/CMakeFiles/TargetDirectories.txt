@@ -1,3 +1,0 @@
-/media/shemhazai/Goldstick/Projects/C/shredder/cmake-build-debug/CMakeFiles/edit_cache.dir
-/media/shemhazai/Goldstick/Projects/C/shredder/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/media/shemhazai/Goldstick/Projects/C/shredder/cmake-build-debug/CMakeFiles/shredder.dir

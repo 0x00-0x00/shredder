@@ -1,1 +1,0 @@
-/usr/bin/cc   -std=gnu99 -Wall -lpthread -D_FILE_OFFSET_BITS=64 -g   CMakeFiles/shredder.dir/main.c.o  -o shredder 
